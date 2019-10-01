@@ -35,7 +35,9 @@ def buildModel(shape):
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
 
-    model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+    lrate = 1e-3
+    opt = Adam(lr=lrate)
+    model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=['accuracy'])
     model.summary()
     return model
 

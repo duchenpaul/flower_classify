@@ -15,39 +15,43 @@ from pprint import pprint
 dataset_dir = config.DATASET_DIR
 data_dump = config.DATA_DMP
 
-imgFileList = [x for x in toolkit_file.get_file_list(dataset_dir) if x.endswith('.jpg')]
-# print(fileList)
+def generate_file_list(dataset_dir):
+    imgFileList = [x for x in toolkit_file.get_file_list(dataset_dir) if x.endswith('.jpg')]
+    # print(fileList)
 
-dataset_dict_list = []
+    dataset_dict_list = []
 
-for file in imgFileList:
-    pic_id = int(toolkit_file.get_basename(
-        file, withExtension=False).replace('image_', ''))
-    group_id = (pic_id - 1) // 80
-    dataset_dict_list.append(
-        {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
+    for file in imgFileList:
+        pic_id = int(toolkit_file.get_basename(
+            file, withExtension=False).replace('image_', ''))
+        group_id = (pic_id - 1) // 80
+        dataset_dict_list.append(
+            {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
+    return dataset_dict_list
 
-print('Processing...')
-x_dataset = np.array([image_process.image_process(
-    x['image_path']) for x in dataset_dict_list])
-x_dataset = np_utils.normalize(x_dataset)
-y_dataset = np_utils.to_categorical([x['group_id'] for x in dataset_dict_list])
 
-dataset = []
-for x in range(len(y_dataset)):
-    label = y_dataset[x]
-    img_data = x_dataset[x]
-    dataset.append((img_data, label))
-dataset = np.array(dataset)
+def read_img(image_path_list):
+    x_dataset = np.array([image_process.image_process(x) for x in image_path_list])
+    x_dataset = np_utils.normalize(x_dataset)
+    return x_dataset
 
-np.save(data_dump, dataset)
+
+def dump_dataset(x_dataset, y_dataset):
+    dataset = []
+    for x in range(len(y_dataset)):
+        img_data = x_dataset[x]
+        label = y_dataset[x]
+        dataset.append((img_data, label))
+    dataset = np.array(dataset)
+    np.save(data_dump, dataset)
 
 
 if __name__ == '__main__':
-    print(type(y_dataset))
-    print(type(x_dataset))
-    print(y_dataset.shape)
-    print(x_dataset.shape)
-    print(type(dataset))
-    print(dataset.shape)
-    print(dataset[0])
+    print('Processing...')
+    dataset_dict_list = generate_file_list(dataset_dir)
+    print('Reading image...')
+    x_dataset = read_img([x['image_path'] for x in dataset_dict_list])
+    y_dataset = np_utils.to_categorical([x['group_id'] for x in dataset_dict_list])
+    print('dumping numpy...')
+    dump_dataset(x_dataset, y_dataset)
+    
