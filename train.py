@@ -15,7 +15,7 @@ import config
 
 data_dump = config.DATA_DMP
 model_name = config.MODEL_NAME
-batch_size = 20
+batch_size = 80
 
 dataset = np.load(data_dump, allow_pickle=True)
 
