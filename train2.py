@@ -15,7 +15,8 @@ import toolkit_file
 import config
 
 data_dump = config.DATA_DMP
-model_name = config.MODEL_NAME
+# model_name = config.MODEL_NAME
+model_name = 'flower_classify_VGG16.model'
 batch_size = 80
 dropOutRate = 0.6
 
@@ -63,5 +64,6 @@ if __name__ == '__main__':
                  embeddings_layer_names=None, 
                  embeddings_metadata=None)
 
-    model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size, validation_split=0.1, callbacks=[callback, tbCallBack])
+    model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size,
+              validation_split=0.1, callbacks=[callback, tbCallBack], run_id=toolkit_file.get_basename(model_name))
     model.save(model_name)
