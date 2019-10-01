@@ -55,6 +55,6 @@ if __name__ == '__main__':
                  embeddings_layer_names=None, 
                  embeddings_metadata=None)
 
-    model.fit(X_dataset, Y_dataset, epochs=100, shuffle=True, batch_size=batch_size, validation_split=0.1, callbacks=[callback, tbCallBack])
+    model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size, validation_split=0.1, callbacks=[callback, tbCallBack])
     toolkit_file.purge_folder('logs')
     model.save(model_name)
