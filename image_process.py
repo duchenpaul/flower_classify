@@ -25,8 +25,10 @@ def image_process(img_path):
 
 
 if __name__ == '__main__':
-    img = cv2.imread('17flowers/jpg\\image_1342.jpg')
+    import os
+    img_path = os.path.join(config.DATASET_DIR, 'image_1051.jpg')
+    img = cv2.imread(img_path)
     img = img_normalize(img)
     print(type(img))
-    # plt.imshow(img, cmap='gray', vmin = 0, vmax = 255)
-    # plt.show()
+    plt.imshow(img, cmap='gray', vmin = 0, vmax = 255)
+    plt.show()
