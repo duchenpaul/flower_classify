@@ -48,7 +48,7 @@ if __name__ == '__main__':
     shape = X_dataset.shape
     model = buildModel(shape)
 
-    callback = EarlyStopping(monitor="loss", patience=10, verbose=1, mode="auto")
+    callback = EarlyStopping(monitor="loss", patience=30, verbose=1, mode="auto")
     tbCallBack = TensorBoard(log_dir='./logs',  # log 目录
                  histogram_freq=0,  # 按照何等频率（epoch）来计算直方图，0为不计算
 #                  batch_size=batch_size,     # 用多大量的数据计算直方图
