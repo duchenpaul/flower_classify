@@ -25,9 +25,7 @@ num_classes = len(dataset[:, 1][0])
 
 def buildModel(shape):
     model = Sequential()
-    model.add(Conv2D(64, 5, 5, input_shape=(shape[1], shape[2], 1), activation = 'relu'))
-    model.add(MaxPooling2D(pool_size = (2, 2)))
-    model.add(Conv2D(32, 5, 5, activation = 'relu'))
+    model.add(Conv2D(32, 5, 5, input_shape=(shape[1], shape[2], 1), activation = 'relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
     model.add(Conv2D(64, 5, 5, activation = 'relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
