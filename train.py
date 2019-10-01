@@ -66,10 +66,12 @@ if __name__ == '__main__':
                              write_graph=True,  # 是否存储网络结构图
                              write_grads=True,  # 是否可视化梯度直方图
                              write_images=True,  # 是否可视化参数
-                             embeddings_freq=1,
+                             embeddings_freq=0,
                              embeddings_layer_names=None,
                              embeddings_metadata=None)
 
+    # model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size,
+    #           validation_split=0.1, callbacks=[callback, tbCallBack])
     model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size,
-              validation_split=0.1, callbacks=[callback, tbCallBack])
+              validation_split=0.1, callbacks=[tbCallBack])
     model.save(model_name)
