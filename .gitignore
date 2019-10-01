@@ -20,6 +20,7 @@
 **/*.7z
 **/*.npy
 **/*.model
+**/*.h5
 
 fonts/*
 models/*

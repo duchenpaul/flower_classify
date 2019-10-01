@@ -29,7 +29,8 @@ Y_dataset = np.array([x for x in dataset[:, 1]])
 num_classes = len(dataset[:, 1][0])
 
 def buildModel(shape):
-    vgg_conv = VGG16(weights='imagenet', include_top=False, input_shape=(shape[1], shape[2], 3))
+    path='./vgg16_weights_tf_dim_ordering_tf_kernels.h5'  
+    vgg_conv = VGG16(weights=path, include_top=False, input_shape=(shape[1], shape[2], 3))
 
     # Freeze all the layers except for the last layer: 
     for layer in vgg_conv.layers[:-4]:

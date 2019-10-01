@@ -61,12 +61,12 @@ if __name__ == '__main__':
     callback = EarlyStopping(
         monitor="loss", patience=30, verbose=1, mode="auto")
     tbCallBack = TensorBoard(log_dir='./logs',  # log 目录
-                             histogram_freq=0,  # 按照何等频率（epoch）来计算直方图，0为不计算
+                             histogram_freq=1,  # 按照何等频率（epoch）来计算直方图，0为不计算
                              #                  batch_size=batch_size,     # 用多大量的数据计算直方图
                              write_graph=True,  # 是否存储网络结构图
                              write_grads=True,  # 是否可视化梯度直方图
                              write_images=True,  # 是否可视化参数
-                             embeddings_freq=0,
+                             embeddings_freq=1,
                              embeddings_layer_names=None,
                              embeddings_metadata=None)
 
