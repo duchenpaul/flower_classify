@@ -19,9 +19,11 @@
 **/*.ttf
 **/*.7z
 **/*.npy
+**/*.model
+
 fonts/*
 models/*
-log/*
+logs/*
 training_data/*
 
 *test*

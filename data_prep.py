@@ -12,9 +12,10 @@ import image_process
 
 from pprint import pprint
 
-DATASET_DIR = config.DATASET_DIR
+dataset_dir = config.DATASET_DIR
+data_dump = config.DATA_DMP
 
-fileList = toolkit_file.get_file_list(DATASET_DIR)
+fileList = toolkit_file.get_file_list(dataset_dir)
 # print(fileList)
 
 dataset_dict_list = []
@@ -39,7 +40,7 @@ for x in range(len(y_dataset)):
     dataset.append((img_data, label))
 dataset = np.array(dataset)
 
-np.save('dataset.npy', dataset)
+np.save(data_dump, dataset)
 
 
 if __name__ == '__main__':
