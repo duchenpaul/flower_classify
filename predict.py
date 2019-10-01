@@ -43,7 +43,7 @@ for no, x in enumerate(predict):
     predict_img = cv2.imread(predict_img_path)
     predict_img = cv2.cvtColor(predict_img, cv2.COLOR_BGR2RGB)
 
-    tag = ['predict_img', 'guess_img']
+    tag = ['predict_img' + ' ' + toolkit_file.get_basename(predict_img_path, withExtension=True), 'guess_img']
     for j, i in enumerate([predict_img, guess_img]):
         plt.subplot(1, 2, j+1)
         plt.imshow(i, cmap='gray', vmin = 0, vmax = 255)

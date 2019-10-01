@@ -16,6 +16,8 @@ import config
 data_dump = config.DATA_DMP
 model_name = config.MODEL_NAME
 batch_size = 80
+dropOutRate = 0.8
+
 
 dataset = np.load(data_dump, allow_pickle=True)
 
@@ -28,16 +30,16 @@ def buildModel(shape):
     model = Sequential()
     model.add(Conv2D(32, 3, 3, input_shape=(shape[1], shape[2], 1), activation = 'relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropOutRate))
     model.add(Conv2D(64, 3, 3, activation = 'relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropOutRate))
     model.add(Conv2D(16, 3, 3, activation = 'relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropOutRate))
     model.add(Flatten())
     model.add(Dense(128, activation='relu'))
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropOutRate))
     model.add(Dense(num_classes, activation='softmax'))
 
     lrate = 1e-3
