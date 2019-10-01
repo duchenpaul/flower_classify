@@ -43,6 +43,7 @@ def dump_dataset(x_dataset, y_dataset):
         label = y_dataset[x]
         dataset.append((img_data, label))
     dataset = np.array(dataset)
+    np.random.shuffle(dataset)
     np.save(data_dump, dataset)
 
 
