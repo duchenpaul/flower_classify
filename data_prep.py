@@ -15,12 +15,12 @@ from pprint import pprint
 dataset_dir = config.DATASET_DIR
 data_dump = config.DATA_DMP
 
-fileList = toolkit_file.get_file_list(dataset_dir)
+imgFileList = [x for x in toolkit_file.get_file_list(dataset_dir) if x.endswith('.jpg')]
 # print(fileList)
 
 dataset_dict_list = []
 
-for file in fileList:
+for file in imgFileList:
     pic_id = int(toolkit_file.get_basename(
         file, withExtension=False).replace('image_', ''))
     group_id = (pic_id - 1) // 80
