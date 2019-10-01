@@ -10,6 +10,7 @@ from keras.callbacks import TensorBoard
 
 import numpy as np
 
+import toolkit_file
 import config
 
 data_dump = config.DATA_DMP
@@ -41,7 +42,6 @@ def buildModel(shape):
 
 if __name__ == '__main__':
     shape = X_dataset.shape
-
     model = buildModel(shape)
 
     callback = EarlyStopping(monitor="loss", patience=10, verbose=1, mode="auto")
@@ -56,4 +56,5 @@ if __name__ == '__main__':
                  embeddings_metadata=None)
 
     model.fit(X_dataset, Y_dataset, epochs=100, shuffle=True, batch_size=batch_size, validation_split=0.1, callbacks=[callback, tbCallBack])
+    toolkit_file.purge_folder('logs')
     model.save(model_name)
