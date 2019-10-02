@@ -16,7 +16,7 @@ import config
 data_dump = config.DATA_DMP
 model_name = config.MODEL_NAME
 batch_size = 80
-dropOutRate = 0.6
+dropOutRate = 0.5
 
 
 dataset = np.load(data_dump, allow_pickle=True)
@@ -45,7 +45,7 @@ def buildModel(shape):
     model.add(Dropout(dropOutRate))
     model.add(Dense(num_classes, activation='softmax'))
 
-    lrate = 1e-3
+    lrate = 1e-5
     opt = Adam(lr=lrate)
     model.compile(loss="categorical_crossentropy",
                   optimizer=opt, metrics=['accuracy'])
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     model = buildModel(shape)
 
     callback = EarlyStopping(
-        monitor="loss", patience=30, verbose=1, mode="auto")
+        monitor="val_loss", patience=30, verbose=1, mode="auto")
     tbCallBack = TensorBoard(log_dir='./logs',  # log 目录
                              histogram_freq=1,  # 按照何等频率（epoch）来计算直方图，0为不计算
                              #                  batch_size=batch_size,     # 用多大量的数据计算直方图
