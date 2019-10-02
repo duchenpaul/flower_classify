@@ -45,7 +45,7 @@ def buildModel(shape):
     model.add(Dropout(dropOutRate))
     model.add(Dense(num_classes, activation='softmax'))
 
-    lrate = 1e-5
+    lrate = 1e-4
     opt = Adam(lr=lrate)
     model.compile(loss="categorical_crossentropy",
                   optimizer=opt, metrics=['accuracy'])
