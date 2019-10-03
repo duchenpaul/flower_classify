@@ -30,14 +30,14 @@ num_classes = len(dataset[:, 1][0])
 
 def buildModel(shape):
     model = Sequential()
-    model.add(Conv2D(32, 3, 3, input_shape=(
+    model.add(Conv2D(32, 4, 1, input_shape=(
         shape[1], shape[2], 1), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(dropOutRate))
-    model.add(Conv2D(64, 3, 3, activation='relu'))
+    model.add(Conv2D(64, 4, 1, activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(dropOutRate))
-    model.add(Conv2D(16, 3, 3, activation='relu'))
+    model.add(Conv2D(16, 4, 1, activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(dropOutRate))
     model.add(Flatten())
